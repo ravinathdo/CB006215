@@ -80,6 +80,14 @@
         <servlet-name>PhotoStallServlet</servlet-name>
         <servlet-class>com.cb006215.servlet.photo.PhotoStallServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AttractionServlet</servlet-name>
+        <servlet-class>com.cb006215.servlet.attraction.AttractionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAttractionServlet</servlet-name>
+        <servlet-class>com.cb006215.servlet.attraction.LoadAttractionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoadExtremeParkServlet</servlet-name>
         <url-pattern>/LoadExtremeParkServlet</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>PhotoStallServlet</servlet-name>
         <url-pattern>/PhotoStallServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttractionServlet</servlet-name>
+        <url-pattern>/AttractionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAttractionServlet</servlet-name>
+        <url-pattern>/LoadAttractionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

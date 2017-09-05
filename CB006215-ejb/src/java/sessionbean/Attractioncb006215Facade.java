@@ -7,6 +7,8 @@ package sessionbean;
 
 import entity.Attractioncb006215;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author ravi
  */
 @Stateless
+@WebService(serviceName = "AttractionWebService")
 public class Attractioncb006215Facade extends AbstractFacade<Attractioncb006215> {
 
     @PersistenceContext(unitName = "CB006215-ejbPU")
@@ -28,5 +31,10 @@ public class Attractioncb006215Facade extends AbstractFacade<Attractioncb006215>
     public Attractioncb006215Facade() {
         super(Attractioncb006215.class);
     }
-    
+
+    @WebMethod(operationName = "setNewAttraction")
+    public void setAttraction() {
+        System.out.println("setAttraction");
+    }
+
 }

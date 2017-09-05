@@ -3,30 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cb006215.servlet.extremepark;
+package com.cb006215.servlet.attraction;
 
-import entity.Extremeparkcb006215;
-import entity.Ticketcb006215;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sessionbean.Extremeparkcb006215Facade;
 
 /**
  *
  * @author ravi
  */
-public class LoadExtremeParkServlet extends HttpServlet {
-
-    @EJB
-    private Extremeparkcb006215Facade extremeparkcb006215Facade;
+public class LoadAttractionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,19 +33,15 @@ public class LoadExtremeParkServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            System.out.println("Servlet->LoadAdminHomeServlet");
-            /* TODO output your page here. You may use following sample code. */
+            System.out.println("servlet->LoadAttractionServlet");
             RequestDispatcher rd = null;
 
             
-            HttpSession session = request.getSession();
-            Ticketcb006215 ticket = (Ticketcb006215) session.getAttribute("ticket");
-
-            //get Extreme games to display
-            List<Extremeparkcb006215> extremeGames = extremeparkcb006215Facade.getExtremeGames();
-            session.setAttribute("extremeGamesList", extremeGames);
-
-            rd = request.getRequestDispatcher("/extreme-games.jsp");
+            
+            
+            
+            
+            rd = request.getRequestDispatcher("/admin-attractions.jsp");
             rd.forward(request, response);
         }
     }

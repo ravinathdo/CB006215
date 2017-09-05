@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
     <head>
         <title>Bootstrap Example</title>
@@ -10,14 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
-
-
-        <script>
-
-            function setAmount(amu) {
-                document.getElementById('amount').value = amu;
-            }
-        </script>
+        <script src="js/JsBarcode.all.min.js" type="text/javascript"></script>
     </head>
     <body>
 
@@ -33,10 +27,10 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <%@include file="admin-menu.jsp" %>
+                        <%@include file="customer-menu.jsp" %>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="LoginServlet"> Logout </a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,60 +39,61 @@
         <div class="container-fluid text-center">    
             <div class="row content">
                 <div class="col-sm-2 sidenav">
-                    <p><a href="LoadTicketListServlet">Ticket List</a></p>
+                    <%@include file="customer-sidenav.jsp" %>
+
                 </div>
                 <div class="col-sm-8 text-left"> 
-                    <h1>Disney California</h1>
+                    <h1>Photo Stall</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <hr>
 
                     <div class="row">
-
-                        <div class="col-md-12">
-                            <c:set var="ttl" value="0"></c:set>
+                        <div class="col-md-8">
+                            ${msg}
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>BCN</th>
-                                    <th>Customer</th>
-                                    <th>Ticket Type</th>
+                                    <th>Extreme Game</th>
                                     <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Balance</th>
-                                    <th>Issue Date</th>
-                                    <th>Reimburse</th>
+                                    <th></th>
                                 </tr>
-                                <c:forEach items="${ticketsList}" var="t">
+                                <c:forEach items="${extremeGamesList}" var="g">
                                     <tr>
-                                        <td>${t.bcn}</td>
-                                        <td>${t.fname} ${t.lname}</td>
-                                        <td>${t.tictype}</td>
-                                        <td>${t.amount}</td>
-                                        <c:set var="ttl" value="${ttl + t.amount}"></c:set>
-                                        <td>${t.status}</td>
-                                        <td>${t.balance}</td>
-                                        <td>${t.timecreated}</td>
-                                        <td>${t.reimburse}</td>
-                                    </tr>
+                                        <td>${g.event}</td>
+                                        <td>${g.amount}</td>
+                                        <td><a href="PayExtremeEventServlet?eid=${g.id}&amount=${g.amount}&event=${g.event}">Pay</a></td>
+                                    </tr> 
                                 </c:forEach>
-                            </table> 
-                            Total Income ${ttl}
+                            </table>
+
+
+
                         </div>
+                        <div class="col-md-4">
+
+                        </div>  
                     </div>
 
+
+
                 </div>
-
-
-                <p></p>
-            </div>
-            <div class="col-sm-2 sidenav">
-               
+                <div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <footer class="container-fluid text-center">
-        <p>Footer Text</p>
-    </footer>
+        <footer class="container-fluid text-center">
+            <p>Footer Text</p>
+        </footer>
 
-</body>
+
+        <script>
+            JsBarcode("#barcode", "CB006215-1");
+        </script>
+    </body>
 </html>
